@@ -3,16 +3,14 @@ package com.wang.dao;
 import com.wang.pojo.Admin;
 import com.wang.pojo.AdminExample;
 import java.util.List;
-
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-@Mapper
+
 public interface AdminMapper {
     long countByExample(AdminExample example);
 
     int deleteByExample(AdminExample example);
 
-    int deleteByPrimaryKey(Integer adminid);
+    int deleteByPrimaryKey(String adminId);
 
     int insert(Admin record);
 
@@ -20,14 +18,13 @@ public interface AdminMapper {
 
     List<Admin> selectByExample(AdminExample example);
 
-    Admin selectByPrimaryKey(Integer adminid);
+    Admin selectByPrimaryKey(String adminId);
 
     int updateByExampleSelective(@Param("record") Admin record, @Param("example") AdminExample example);
 
     int updateByExample(@Param("record") Admin record, @Param("example") AdminExample example);
 
-    int updateByPrimaryKeySelective(Admin record);
+    boolean updateByPrimaryKeySelective(Admin record);
 
-    int updateByPrimaryKey(Admin record);
-
+    boolean updateByPrimaryKey(Admin record);
 }

@@ -8,11 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * @author wangdaye996
- * @Date 2021/4/30
- * @Time 18:42
- */
 @Service
 public class AdminServiceImpl implements AdminService{
     @Autowired
@@ -29,8 +24,8 @@ public class AdminServiceImpl implements AdminService{
     }
 
     @Override
-    public int deleteByPrimaryKey(Integer adminid) {
-        return adminMapper.deleteByPrimaryKey(adminid);
+    public int deleteByPrimaryKey(String adminId) {
+        return adminMapper.deleteByPrimaryKey(adminId);
     }
 
     @Override
@@ -49,13 +44,13 @@ public class AdminServiceImpl implements AdminService{
     }
 
     @Override
-    public Admin selectByPrimaryKey(Integer adminid) {
-        return adminMapper.selectByPrimaryKey(adminid);
+    public Admin selectByPrimaryKey(String adminId) {
+        return adminMapper.selectByPrimaryKey(adminId);
     }
 
     @Override
-    public int updateByExampleSelective(Admin record, AdminExample example) {
-        return adminMapper.updateByExampleSelective(record,example);
+    public boolean updateByExampleSelective(Admin record, AdminExample example) {
+        return adminMapper.updateByPrimaryKeySelective(record);
     }
 
     @Override
@@ -64,12 +59,23 @@ public class AdminServiceImpl implements AdminService{
     }
 
     @Override
-    public int updateByPrimaryKeySelective(Admin record) {
+    public boolean updateByPrimaryKeySelective(Admin record) {
         return adminMapper.updateByPrimaryKeySelective(record);
     }
 
     @Override
-    public int updateByPrimaryKey(Admin record) {
+    public boolean updateByPrimaryKey(Admin record) {
         return adminMapper.updateByPrimaryKey(record);
+    }
+
+    @Override
+    public Admin getAdmin(String adminId, String password) {
+        Admin admin = adminMapper.selectByPrimaryKey(adminId);
+        if (admin!=null) {
+            if (admin.getPassword().equals(password)) {
+                return admin;
+            }
+        }
+        return null;
     }
 }

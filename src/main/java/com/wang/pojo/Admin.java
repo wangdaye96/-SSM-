@@ -1,56 +1,42 @@
 package com.wang.pojo;
 
 public class Admin {
-    private Integer adminid;
+    private String adminId;
 
-    private String username;
+    private String adminName;
 
-    private String password;
-
-    private String realname;
+    private String idcard;
 
     private String sex;
 
-    private String age;
-
     private String tel;
-
-    private String address;
-
-    private String addtime;
 
     private String identity;
 
-    public Integer getAdminid() {
-        return adminid;
+    private String password;
+
+    public String getAdminId() {
+        return adminId;
     }
 
-    public void setAdminid(Integer adminid) {
-        this.adminid = adminid;
+    public void setAdminId(String adminId) {
+        this.adminId = adminId == null ? null : adminId.trim();
     }
 
-    public String getUsername() {
-        return username;
+    public String getAdminName() {
+        return adminName;
     }
 
-    public void setUsername(String username) {
-        this.username = username == null ? null : username.trim();
+    public void setAdminName(String adminName) {
+        this.adminName = adminName == null ? null : adminName.trim();
     }
 
-    public String getPassword() {
-        return password;
+    public String getIdcard() {
+        return idcard;
     }
 
-    public void setPassword(String password) {
-        this.password = password == null ? null : password.trim();
-    }
-
-    public String getRealname() {
-        return realname;
-    }
-
-    public void setRealname(String realname) {
-        this.realname = realname == null ? null : realname.trim();
+    public void setIdcard(String idcard) {
+        this.idcard = idcard == null ? null : idcard.trim();
     }
 
     public String getSex() {
@@ -61,36 +47,12 @@ public class Admin {
         this.sex = sex == null ? null : sex.trim();
     }
 
-    public String getAge() {
-        return age;
-    }
-
-    public void setAge(String age) {
-        this.age = age == null ? null : age.trim();
-    }
-
     public String getTel() {
         return tel;
     }
 
     public void setTel(String tel) {
         this.tel = tel == null ? null : tel.trim();
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address == null ? null : address.trim();
-    }
-
-    public String getAddtime() {
-        return addtime;
-    }
-
-    public void setAddtime(String addtime) {
-        this.addtime = addtime == null ? null : addtime.trim();
     }
 
     public String getIdentity() {
@@ -101,19 +63,11 @@ public class Admin {
         this.identity = identity == null ? null : identity.trim();
     }
 
-    @Override
-    public String toString() {
-        return "Admin{" +
-                "adminid=" + adminid +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", realname='" + realname + '\'' +
-                ", sex='" + sex + '\'' +
-                ", age='" + age + '\'' +
-                ", tel='" + tel + '\'' +
-                ", address='" + address + '\'' +
-                ", addtime='" + addtime + '\'' +
-                ", identity='" + identity + '\'' +
-                '}';
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password == null ? null : password.trim();
     }
 }

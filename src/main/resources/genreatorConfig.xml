@@ -5,16 +5,16 @@
 
 <generatorConfiguration>
     <!-- 数据库驱动:选择你的本地硬盘上面的数据库驱动包-->
-    <classPathEntry  location="F:\java-2019-03\mysql-connector-java-5.1.49.jar"/>
+    <classPathEntry location="F:\java-2019-03\mysql-connector-java-5.1.49.jar"/>
     <!-- context元素用于指定生成一组对象的环境。targetRuntime:此属性用于指定生成的代码的运行时环境。MyBatis3:*这是默认值*-->
     <context id="testTables" targetRuntime="MyBatis3">
         <commentGenerator>
             <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
-            <property name="suppressAllComments" value="true" />
+            <property name="suppressAllComments" value="true"/>
         </commentGenerator>
         <!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/mycrmdb?allowMultiQueries=true" userId="root"
+                        connectionURL="jdbc:mysql://localhost:3306/mymarket?allowMultiQueries=true" userId="root"
                         password="123456">
         </jdbcConnection>
         <!-- 如使用oracle请参考如下 -->
@@ -27,35 +27,65 @@
         <!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL 和
             NUMERIC 类型解析为java.math.BigDecimal -->
         <javaTypeResolver>
-            <property name="forceBigDecimals" value="false" />
+            <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
 
         <!-- targetProject:生成PO类的位置 -->
         <javaModelGenerator targetPackage="com.wang.pojo"
                             targetProject="src/main/java">
             <!-- enableSubPackages:是否让schema作为包的后缀 -->
-            <property name="enableSubPackages" value="false" />
+            <property name="enableSubPackages" value="false"/>
             <!-- 从数据库返回的值被清理前后的空格 -->
-            <property name="trimStrings" value="true" />
+            <property name="trimStrings" value="true"/>
         </javaModelGenerator>
         <!-- targetProject:mapper映射文件生成的位置 -->
-        <sqlMapGenerator targetPackage="com.wang.mapper"
+        <sqlMapGenerator targetPackage="com.wang..mapper"
                          targetProject="src/main/java">
             <!-- enableSubPackages:是否让schema作为包的后缀 -->
-            <property name="enableSubPackages" value="false" />
+            <property name="enableSubPackages" value="false"/>
         </sqlMapGenerator>
         <!-- targetPackage：mapper接口生成的位置 -->
         <javaClientGenerator type="XMLMAPPER"
-                             targetPackage="com.wang.mapper"
+                             targetPackage="com.wang.dao"
                              targetProject="src/main/java">
             <!-- enableSubPackages:是否让schema作为包的后缀 -->
-            <property name="enableSubPackages" value="false" />
+            <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
 
         <!-- 指定数据库表 -->
-        <table tableName="admin" domainObjectName="Admin" enableCountByExample="true"
+<!--        <table tableName="admin" domainObjectName="Admin" enableCountByExample="true"-->
+<!--               enableDeleteByExample="true" enableUpdateByExample="true"-->
+<!--               enableSelectByExample="true" selectByExampleQueryId="true"></table>-->
+<!--        <table tableName="customer" domainObjectName="Customer" enableCountByExample="true"-->
+<!--               enableDeleteByExample="true" enableUpdateByExample="true"-->
+<!--               enableSelectByExample="true" selectByExampleQueryId="true"></table>-->
+<!--        <table tableName="customer_return_goods" domainObjectName="CustomerReturnGoods" enableCountByExample="true"-->
+<!--               enableDeleteByExample="true" enableUpdateByExample="true"-->
+<!--               enableSelectByExample="true" selectByExampleQueryId="true"></table>-->
+<!--        <table tableName="goods" domainObjectName="Goods" enableCountByExample="true"-->
+<!--               enableDeleteByExample="true" enableUpdateByExample="true"-->
+<!--               enableSelectByExample="true" selectByExampleQueryId="true"></table>-->
+<!--        <table tableName="goods_stock" domainObjectName="GoodsStock" enableCountByExample="true"-->
+<!--               enableDeleteByExample="true" enableUpdateByExample="true"-->
+<!--               enableSelectByExample="true" selectByExampleQueryId="true"></table>-->
+<!--        <table tableName="input_goods" domainObjectName="InputGoods" enableCountByExample="true"-->
+<!--               enableDeleteByExample="true" enableUpdateByExample="true"-->
+<!--               enableSelectByExample="true" selectByExampleQueryId="true"></table>-->
+<!--        <table tableName="order" domainObjectName="Order" enableCountByExample="true"-->
+<!--               enableDeleteByExample="true" enableUpdateByExample="true"-->
+<!--               enableSelectByExample="true" selectByExampleQueryId="true"></table>-->
+        <table tableName="return_goods" domainObjectName="ReturnGoods" enableCountByExample="true"
                enableDeleteByExample="true" enableUpdateByExample="true"
                enableSelectByExample="true" selectByExampleQueryId="true"></table>
+<!--        <table tableName="staff" domainObjectName="Staff" enableCountByExample="true"-->
+<!--               enableDeleteByExample="true" enableUpdateByExample="true"-->
+<!--               enableSelectByExample="true" selectByExampleQueryId="true"></table>-->
+<!--        <table tableName="supplier" domainObjectName="Supplier" enableCountByExample="true"-->
+<!--               enableDeleteByExample="true" enableUpdateByExample="true"-->
+<!--               enableSelectByExample="true" selectByExampleQueryId="true"></table>-->
+<!--        <table tableName="type" domainObjectName="Type" enableCountByExample="true"-->
+<!--               enableDeleteByExample="true" enableUpdateByExample="true"-->
+<!--               enableSelectByExample="true" selectByExampleQueryId="true"></table>-->
 
         <!-- 有些表的字段需要指定java类型
          <table schema="" tableName="">

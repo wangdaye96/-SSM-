@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wang.dao.ReturnGoodsMapper">
+  <resultMap id="BaseResultMap" type="com.wang.pojo.ReturnGoods">
+    <id column="return_id" jdbcType="VARCHAR" property="returnId" />
+    <result column="goods_id" jdbcType="INTEGER" property="goodsId" />
+    <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
+    <result column="number" jdbcType="INTEGER" property="number" />
+    <result column="input_date" jdbcType="DATE" property="inputDate" />
+    <result column="return_date" jdbcType="DATE" property="returnDate" />
+    <result column="reason" jdbcType="VARCHAR" property="reason" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    return_id, goods_id, goods_name, number, input_date, return_date, reason, remarks
+  </sql>
+  <select id="selectByExample" parameterType="com.wang.pojo.ReturnGoodsExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from return_goods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from return_goods
+    where return_id = #{returnId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from return_goods
+    where return_id = #{returnId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.wang.pojo.ReturnGoodsExample">
+    delete from return_goods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.wang.pojo.ReturnGoods">
+    insert into return_goods (return_id, goods_id, goods_name, 
+      number, input_date, return_date, 
+      reason, remarks)
+    values (#{returnId,jdbcType=VARCHAR}, #{goodsId,jdbcType=INTEGER}, #{goodsName,jdbcType=VARCHAR}, 
+      #{number,jdbcType=INTEGER}, #{inputDate,jdbcType=DATE}, #{returnDate,jdbcType=DATE},
+      #{reason,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wang.pojo.ReturnGoods">
+    insert into return_goods
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="returnId != null">
+        return_id,
+      </if>
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="goodsName != null">
+        goods_name,
+      </if>
+      <if test="number != null">
+        number,
+      </if>
+      <if test="inputDate != null">
+        input_date,
+      </if>
+      <if test="returnDate != null">
+        return_date,
+      </if>
+      <if test="reason != null">
+        reason,
+      </if>
+      <if test="remarks != null">
+        remarks,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="returnId != null">
+        #{returnId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsName != null">
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null">
+        #{number,jdbcType=INTEGER},
+      </if>
+      <if test="inputDate != null">
+        #{inputDate,jdbcType=DATE},
+      </if>
+      <if test="returnDate != null">
+        #{returnDate,jdbcType=DATE},
+      </if>
+      <if test="reason != null">
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.wang.pojo.ReturnGoodsExample" resultType="java.lang.Long">
+    select count(*) from return_goods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update return_goods
+    <set>
+      <if test="record.returnId != null">
+        return_id = #{record.returnId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsId != null">
+        goods_id = #{record.goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="record.goodsName != null">
+        goods_name = #{record.goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.number != null">
+        number = #{record.number,jdbcType=INTEGER},
+      </if>
+      <if test="record.inputDate != null">
+        input_date = #{record.inputDate,jdbcType=DATE},
+      </if>
+      <if test="record.returnDate != null">
+        return_date = #{record.returnDate,jdbcType=DATE},
+      </if>
+      <if test="record.reason != null">
+        reason = #{record.reason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remarks != null">
+        remarks = #{record.remarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update return_goods
+    set return_id = #{record.returnId,jdbcType=VARCHAR},
+      goods_id = #{record.goodsId,jdbcType=INTEGER},
+      goods_name = #{record.goodsName,jdbcType=VARCHAR},
+      number = #{record.number,jdbcType=INTEGER},
+      input_date = #{record.inputDate,jdbcType=DATE},
+      return_date = #{record.returnDate,jdbcType=DATE},
+      reason = #{record.reason,jdbcType=VARCHAR},
+      remarks = #{record.remarks,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wang.pojo.ReturnGoods">
+    update return_goods
+    <set>
+      <if test="goodsId != null">
+        goods_id = #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsName != null">
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null">
+        number = #{number,jdbcType=INTEGER},
+      </if>
+      <if test="inputDate != null">
+        input_date = #{inputDate,jdbcType=DATE},
+      </if>
+      <if test="returnDate != null">
+        return_date = #{returnDate,jdbcType=DATE},
+      </if>
+      <if test="reason != null">
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null">
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where return_id = #{returnId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wang.pojo.ReturnGoods">
+    update return_goods
+    set goods_id = #{goodsId,jdbcType=INTEGER},
+      goods_name = #{goodsName,jdbcType=VARCHAR},
+      number = #{number,jdbcType=INTEGER},
+      input_date = #{inputDate,jdbcType=DATE},
+      return_date = #{returnDate,jdbcType=DATE},
+      reason = #{reason,jdbcType=VARCHAR},
+      remarks = #{remarks,jdbcType=VARCHAR}
+    where return_id = #{returnId,jdbcType=VARCHAR}
+  </update>
+  <select id="getReturnGoodsByCondition" resultMap="BaseResultMap">
+    select * from return_goods
+    <where>
+      <if test="goodsId!=null and goodsId!=''">
+        and	goods_id = #{goodsId,jdbcType=INTEGER}
+      </if>
+      <if test="returnDate!=null and returnDate!=''">
+        and return_date=#{returnDate}
+      </if>
+      <if test="goodsName!=null and goodsName!=''">
+        and goods_name like concat('%',#{goodsName},'%')
+      </if>
+      <if test="returnId!=null and returnId!=''">
+        and return_id=#{returnId}
+      </if>
+    </where>
+    order by return_date DESC
+  </select>
+</mapper>
